@@ -40,38 +40,42 @@ pub mod mycalculatordapp {
     }
 }
 
+#[account]
+pub struct Calculator {
+    pub greeting: String,
+    pub result: i64,
+    pub remainder: i64,
+}
+
 #[derive(Accounts)]
 pub struct Create<'info> {
-    #[account(init, player = user, space = 8 + 64 + 64 + 64 + 64)]
+    #[account(init, payer = user, space = 8 + 64 + 64 + 64 + 64)]
     pub calculator: Account<'info, Calculator>,
     #[account(mut)]
     pub user: Signer<'info>,
     pub system_program: Program<'info, System>,
 }
 
+#[derive(Accounts)]
 pub struct Addition<'info> {
     #[account(mut)]
-    pub calculator: Account<'info, Calculator>
+    pub calculator: Account<'info, Calculator>,
 }
 
+#[derive(Accounts)]
 pub struct Subtraction<'info> {
     #[account(mut)]
-    pub calculator: Account<'info, Calculator>
+    pub calculator: Account<'info, Calculator>,
 }
 
+#[derive(Accounts)]
 pub struct Multiplication<'info> {
     #[account(mut)]
-    pub calculator: Account<'info, Calculator>
+    pub calculator: Account<'info, Calculator>,
 }
 
+#[derive(Accounts)]
 pub struct Division<'info> {
     #[account(mut)]
-    pub calculator: Account<'info, Calculator>
-}
-
-#[account]
-pub struct Calculator {
-    pub greeting: String,
-    pub result: i64,
-    pub remainder: i64,
+    pub calculator: Account<'info, Calculator>,
 }
